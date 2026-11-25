@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.overnight.allowallrotations'
+    // compileSdk 37: io.github.libxposed:service:102.0.0 の AAR
+    // メタデータが minCompileSdk 37 を要求するため。
+    // API 37 のプラットフォームは android-37.0 としてのみ提供される
+    // ため、release DSL で minorApiLevel まで指定する。
+    // 要 AGP 9.1.1 以降
+    compileSdk {
+        version = release(37) {
+            it.minorApiLevel = 0
+        }
+    }
+
+    defaultConfig {
+        applicationId 'com.overnight.allowallrotations'
+        // LSPosed は Android 8.1 (API 27) 以降が対象
+        minSdk 27
+        targetSdk 35
+        versionCode 3
+        versionName '0.1.2'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // 本モジュールは system_server の内部メソッドを反射でフックするのが
+    // 本来の仕事なので、非 SDK API への反射アクセスを禁じる
+    // BlockedPrivateApi チェックは対象外にする (release ビルドの
+    // lintVitalRelease で Fatal になるため)
+    lint {
+        disable 'BlockedPrivateApi'
+    }
+
+    // src/main/resources の META-INF/xposed/* を APK に確実に入れる
+    packaging {
+        resources {
+            merges += 'META-INF/xposed/*'
+            excludes += '**'
+        }
+    }
+}
+
+// Kotlin のコンパイル先を JVM 17 にそろえる
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
+dependencies {
+    // Modern Xposed API (libxposed) 102。
+    // 実行時はフレームワーク側から提供されるので compileOnly
+    compileOnly 'io.github.libxposed:api:102.0.0'
+
+    // 設定の受け渡しは Remote Preferences (フレームワーク経由)。
+    // 設定アプリ側は service が必要 (implementation)
+    implementation 'io.github.libxposed:service:102.0.0'
+}
+
+// Android Studio が同期時に要求する内部タスクの受け皿
+// (Groovy DSL 構成では本体タスクが生成されず同期が落ちることがある)
+tasks.register('prepareKotlinBuildScriptModel') {
+    description = 'Stub for Android Studio sync (Kotlin build script model)'
+}

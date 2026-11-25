@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AllowAllRotations</string>
+    <string name="module_description">Allow all rotations - enables 180° in sensor rotation</string>
+    <string name="app_description">Makes sensor rotation (auto-rotate / sensor portrait / sensor landscape) also select 180° (upside down). This module simply enables the device\'s \"allow all rotations\" (allowAllRotations) flag in system_server.</string>
+    <string name="allow_all_rotations">Allow all rotations</string>
+    <string name="allow_all_rotations_summary">Turn off to return to the device default behavior</string>
+    <string name="note_reboot">A reboot is required for changes to take effect. Also make sure \"System Framework (android)\" is enabled in the LSPosed scope.</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AllowAllRotations</string>
+    <string name="module_description">すべての回転を許可 - センサー回転で 180° も使えるように</string>
+    <string name="app_description">センサー回転 (自動回転 / 縦センサー / 横センサー) で、180° (逆向き) も選ばれるようにします。端末の「すべての回転を許可」 (allowAllRotations) を system_server で有効化するだけのモジュールです。</string>
+    <string name="allow_all_rotations">すべての回転を許可</string>
+    <string name="allow_all_rotations_summary">OFF にすると端末のデフォルト動作に戻ります</string>
+    <string name="note_reboot">反映には端末の再起動が必要です。LSPosed のスコープで「システムフレームワーク (android)」が有効になっていることも確認してください。</string>
+</resources>
