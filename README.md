@@ -14,9 +14,6 @@ HyperOS3はこれを無効にしているため、Asrishで縦センサーを設
 仕組み自体はAOSP 標準のものなので他の ROM でも動くかもしれませんが、
 **動作は保証できません。**
 
-Verified only on HyperOS 3 (Android 16). It may work on other ROMs,
-but there is no guarantee.
-
 ## 仕組み
 
 スコープは `system` (システムフレームワーク) のみ。
