@@ -1,17 +1,17 @@
 # AllowAllRotations
 
-すべての回転を許可するだけの LSPosed モジュール (Modern Xposed API 102)。
+全ての回転方向を許可するだけのLSPosedモジュール
 
-センサー回転 (自動回転 / 縦センサー / 横センサー) で 180° (逆向き) が
-選ばれるかどうかは、端末の `allowAllRotations`
-(`config_allowAllRotations` / `DisplayRotation`) で決まります。
-多くの ROM はこれを無効で出荷するため、縦センサーでも逆さに反転しません。
-本モジュールは system_server でその門番を開けます。
+センサー回転 (自動回転 / 縦センサー / 横センサー)で180°(逆向き)が
+選ばれるかどうかは、端末の`allowAllRotations`
+(`config_allowAllRotations` / `DisplayRotation`)で決まります。
+HyperOS3はこれを無効にしているため、Asrishで縦センサーを設定しても逆さに反転しません。
+本モジュールはそれを回避します
 
 ## 検証環境 / 注意
 
 **検証済みなのは HyperOS 3 (Android 16、Xiaomi 17 Ultra) のみです。**
-仕組み自体は AOSP 標準のものなので他の ROM でも動くかもしれませんが、
+仕組み自体はAOSP 標準のものなので他の ROM でも動くかもしれませんが、
 **動作は保証できません。**
 
 Verified only on HyperOS 3 (Android 16). It may work on other ROMs,
