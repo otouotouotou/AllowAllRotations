@@ -38,3 +38,43 @@ Preferences。反映には端末の再起動が必要です。
 ## ライセンス
 
 Apache License 2.0
+
+---
+
+# AllowAllRotations (English)
+
+An LSPosed module that simply allows all rotation directions.
+
+Whether sensor rotation (auto-rotate / sensor portrait / sensor landscape)
+can select 180° (upside down) is decided by the device's `allowAllRotations`
+(`config_allowAllRotations` / `DisplayRotation`).
+HyperOS 3 has this disabled, so even if you set sensor portrait in Asrish,
+the screen never flips upside down. This module works around that.
+
+## Verified environment / Note
+
+**Verified only on HyperOS 3 (Android 16, Xiaomi 17 Ultra).**
+The mechanism itself is standard AOSP, so it may work on other ROMs,
+but **there is no guarantee**.
+
+## How it works
+
+Scope is `system` (system framework) only.
+
+- Hooks `DisplayRotation.getAllowAllRotations()` to always return
+  enabled (1) while the setting is ON (the main hook)
+- Writes `mAllowAllRotations` right after the `DisplayRotation`
+  constructor (fallback)
+- `RotationPolicy.areAllRotationsAllowed` returns the setting value
+
+One switch (default ON). Settings are passed via LSPosed Remote
+Preferences. A reboot is required to apply changes.
+
+## Requirements
+
+- LSPosed (Modern Xposed API 102)
+- APK minSdk 27 (Android 8.1)
+
+## License
+
+Apache License 2.0
