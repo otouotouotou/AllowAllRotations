@@ -32,6 +32,11 @@ Preferences。反映には端末の再起動が必要です。
 - LSPosed (Modern Xposed API 102 対応)
 - APK の minSdk は 27 (Android 8.1)
 
+## 免責事項
+本モジュールは無保証で提供されます。使用は自己責任で
+お願いします。本モジュールの使用によって生じた不具合・損害に
+ついて、作者は責任を負いません。
+
 ## ライセンス
 
 Apache License 2.0
@@ -71,6 +76,11 @@ Preferences. A reboot is required to apply changes.
 
 - LSPosed (Modern Xposed API 102)
 - APK minSdk 27 (Android 8.1)
+
+## Disclaimer
+This module is provided "as is", without any warranty. Use it
+at your own risk. The author takes no responsibility for any
+damage or malfunction caused by using this module.
 
 ## License
 
